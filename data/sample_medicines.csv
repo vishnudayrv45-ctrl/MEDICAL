@@ -1,0 +1,41 @@
+id,name,strength
+1,Paracetamol,500mg
+2,Paracetamol,650mg
+3,Ibuprofen,400mg
+4,Cetirizine,10mg
+5,Levocetirizine,5mg
+6,Azithromycin,500mg
+7,Amoxicillin,500mg
+8,Doxycycline,100mg
+9,Ciprofloxacin,500mg
+10,Pantoprazole,40mg
+11,Omeprazole,20mg
+12,Rabeprazole,20mg
+13,Domperidone,10mg
+14,Ondansetron,4mg
+15,Loperamide,2mg
+16,Metformin,500mg
+17,Glimepiride,2mg
+18,Amlodipine,5mg
+19,Losartan,50mg
+20,Telmisartan,40mg
+21,Metoprolol,50mg
+22,Atorvastatin,10mg
+23,Clopidogrel,75mg
+24,Aspirin,75mg
+25,Diclofenac,50mg
+26,Montelukast,10mg
+27,Levothyroxine,50mcg
+28,Fluconazole,150mg
+29,Folic Acid,5mg
+30,Vitamin C,500mg
+31,Vitamin D3,60000IU
+32,Calcium,500mg
+33,Zinc,50mg
+34,Vitamin B Complex,Tablet
+35,Multivitamin,Tablet
+36,ORS Powder,21g
+37,Cough Syrup,100ml
+38,Salbutamol Inhaler,100mcg
+39,Povidone Iodine,5% Solution
+40,Iron Folic Acid,100mg

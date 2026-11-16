@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block head %}<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>Find your medicine at a pharmacy near you</h1>
+      <p class="lead">Check which nearby pharmacies have a medicine in stock before you leave home.</p>
+      {% include "_searchbar.html" %}
+      <div class="chips">
+        <span class="muted">Popular searches:</span>
+        <a href="/search?q=Paracetamol">Paracetamol</a>
+        <a href="/search?q=Cetirizine">Cetirizine</a>
+        <a href="/search?q=Metformin">Metformin</a>
+        <a href="/search?q=Pantoprazole">Pantoprazole</a>
+        <a href="/search?q=Vitamin D3">Vitamin D3</a>
+      </div>
+    </div>
+    <!-- 3D animation (drawn by static/js/hero3d.js) -->
+    <div id="hero3d" class="hero-3d" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="section grey">
+  <div class="container">
+    <h2>How it works</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Search</h3><p class="muted">Type a medicine name and choose a strength. Spelling mistakes are corrected with suggestions.</p></div>
+      <div class="card"><h3>Compare pharmacies</h3><p class="muted">See stock status, quantity, address and phone number for every matching pharmacy.</p></div>
+      <div class="card"><h3>Get directions</h3><p class="muted">Open the pharmacy on the map and tap Get directions to start navigation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Pharmacies on the map</h2>
+    <p class="muted">Demo pharmacies around Mysuru. Click a marker to see details.</p>
+    <div id="map" class="map"></div>
+  </div>
+</section>
+
+<section class="section grey">
+  <div class="container">
+    <h2>Smart features</h2>
+    <div class="grid-2">
+      <div class="card"><h3>Spelling suggestions</h3><p class="muted">Typed “paracetmol”? MediFind suggests the closest medicine name using string matching.</p></div>
+      <div class="card"><h3>Shortage prediction</h3><p class="muted">A small machine learning model studies past stock levels and flags medicines that may run out soon. Pharmacies see this on their dashboard.</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/hero3d.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script>
+  initMap("map");
+  api("/api/pharmacies/locations").then(d => showMarkers(d.pharmacies)).catch(e => toast(e.message, true));
+</script>
+{% endblock %}

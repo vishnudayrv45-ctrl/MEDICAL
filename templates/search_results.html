@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Search results – MediFind{% endblock %}
+{% block head %}<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">{% endblock %}
+
+{% block content %}
+<section class="section tight">
+  <div class="container">
+    {% include "_searchbar.html" %}
+
+    <div class="filters">
+      <label class="check"><input type="checkbox" id="f-instock"> In stock only</label>
+      <label class="inline">Nearby
+        <select id="f-radius">
+          <option value="">Any distance</option>
+          <option value="2">Within 2 km</option>
+          <option value="5">Within 5 km</option>
+          <option value="10">Within 10 km</option>
+        </select>
+      </label>
+      <button type="button" class="btn btn-outline btn-sm" id="f-location">Use my location</button>
+      <span class="muted small" id="f-note"></span>
+    </div>
+
+    <h1 class="results-title" id="result-title">Results</h1>
+    <p class="muted" id="result-summary"></p>
+
+    <div class="results-layout">
+      <div id="results" class="results-list"></div>
+      <div class="map-col"><div id="map" class="map"></div></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+{% endblock %}

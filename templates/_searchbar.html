@@ -1,0 +1,13 @@
+<!-- Search bar shared by the home page and the results page -->
+<form class="searchbar" action="/search" method="get" id="search-form">
+  <div class="sb-field sb-grow">
+    <label for="q">Medicine name</label>
+    <input id="q" name="q" type="text" list="medicine-names" placeholder="e.g. Paracetamol" autocomplete="off" required>
+    <datalist id="medicine-names"></datalist>
+  </div>
+  <div class="sb-field">
+    <label for="strength">Strength</label>
+    <select id="strength" name="strength"><option value="">Any strength</option></select>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>

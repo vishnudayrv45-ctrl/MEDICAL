@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Pharmacy dashboard – MediFind{% endblock %}
+
+{% block content %}
+<!-- Login view (shown when not logged in) -->
+<section id="login-view" class="section hidden">
+  <div class="container narrow">
+    <div class="card login-card">
+      <h1>Pharmacy dashboard</h1>
+      <p class="muted">Demo login: choose a pharmacy and enter the password <strong>demo123</strong>.</p>
+      <form id="login-form">
+        <label for="login-pharmacy">Pharmacy</label>
+        <select id="login-pharmacy" required></select>
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" placeholder="demo123" required>
+        <p id="login-error" class="error hidden"></p>
+        <button class="btn btn-primary full" type="submit">Log in</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Dashboard view (shown after login) -->
+<section id="dash-view" class="section hidden">
+  <div class="container">
+    <div class="dash-head">
+      <div>
+        <h1 id="dash-title">Dashboard</h1>
+        <p class="muted" id="dash-sub"></p>
+      </div>
+      <button class="btn btn-outline" id="logout-btn" type="button">Log out</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="stat-num" id="s-total">0</span><span class="muted">Medicines listed</span></div>
+      <div class="stat"><span class="stat-num" id="s-in">0</span><span class="muted">In stock</span></div>
+      <div class="stat"><span class="stat-num" id="s-low">0</span><span class="muted">Low stock (under 20)</span></div>
+      <div class="stat"><span class="stat-num" id="s-out">0</span><span class="muted">Out of stock</span></div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="card">
+        <h2>Add medicine</h2>
+        <form id="add-form" class="form-grid">
+          <div><label for="a-name">Medicine name</label><input id="a-name" list="medicine-names" required placeholder="e.g. Paracetamol"></div>
+          <div><label for="a-strength">Strength</label><input id="a-strength" required placeholder="e.g. 500mg"></div>
+          <div><label for="a-qty">Quantity</label><input id="a-qty" type="number" min="0" required value="0"></div>
+          <button class="btn btn-primary" type="submit">Add to inventory</button>
+        </form>
+        <datalist id="medicine-names"></datalist>
+      </div>
+
+      <div class="card">
+        <h2>Shortage prediction</h2>
+        <p class="muted small">Medicines predicted to run out within 7 days, based on past stock levels.</p>
+        <div id="predictions"></div>
+      </div>
+    </div>
+
+    <div class="card inventory">
+      <div class="inv-toolbar">
+        <h2>Current inventory</h2>
+        <div class="inv-controls">
+          <input id="inv-search" type="search" placeholder="Search inventory">
+          <select id="inv-filter">
+            <option value="all">All</option>
+            <option value="in">In stock</option>
+            <option value="low">Low stock</option>
+            <option value="out">Out of stock</option>
+          </select>
+        </div>
+      </div>
+      <div id="inventory"></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>{% endblock %}
